@@ -1,0 +1,88 @@
+classes I will need:
+- Player
+* Guess_checker
+- Game
+- Display
+* Solution generator
+* Directions
+
+1. randomly generate solution array
+    * rand(#)
+    * use randomly generated # to index into starting_colors array select it for new_random_solution
+
+        starting_colors = ["red", "blue", "green", "yellow"]
+        new_random_solution = []
+
+        4.times do
+          x = rand(3)
+          new_random_solution << starting_colors[x]
+        end
+        new_random_solution
+
+    * need collection of colors I can randomly place into an array
+    * ??? Randomize method ???
+    * new_random_solution = the randomized array of 4 elements
+    * initialize a solution hash with values = 0
+
+        default_solution = {"red" => 0, "blue" => 0, "yellow" => 0, "green" => 0}
+
+2. create hash from solution that pairs color with quantity
+    - default_solution = {"red" => 0, "blue" => 0, "green" => 0, "yellow" => 0}
+    - new_random_solution.reduce(default_solution) { |default_solution, color| default_solution[color] += 1; default_solution }
+    - ??? check on group_by method with .swap to reverse keys and values ???
+    - store hash.  It will not need to be saved again since it's the 'master'
+
+3. create attempt array (pull this from user interface)
+    - user_attempt = 'red red blue green'
+    *** downcase the input in case user enters capital letter ***
+    - use interface to request first attempt
+    - change string to array...
+    - user_attempt_array = user_attempt.split
+    - initialize an attempt hash with values = 0
+      Ex. default_attempt = {"red" => 0, "blue" => 0, "yellow" => 0, "green" => 0}
+    - create hash that pairs color with quatity
+    - userattempt_array.reduce(default_attempt) { |default_attempt, color| default_attempt[color] += 1; default_attempt }
+    - store hash in instance variable
+
+4. check for total amount of color matches first (comparing hash values)
+    - if attempts hash is less than or equal to solution hash use attempt quantity value otherwise use solution value.
+    - save total color match value (instance variable that changes with each round)
+
+      colors = ["red", "blue"]
+
+      colors_correct = 0
+      colors.each do |color|
+        if attempt[color] >= solution[color]
+          colors_correct += solution[color]
+        else
+          colors_correct += attempt[color]
+        end
+      colors_correct
+      end
+
+5. compare arrays for color and location match
+
+      solution = ["red", "blue", "green", "yellow"]
+      attempt = ["red", "green", "blue", "yellow"]
+      perfect_match = 0
+      0.upto(3) do |n|
+        if attempt[n] == solution[n]
+          perfect_match += 1
+        else
+          perfect_match
+        end
+      end
+      perfect_match
+
+6. save perfect match value in instance variable
+
+7. we now have perfect matches and remaining color matches (total color - perfect)
+    - perfect matches (step #6)
+    - color matches, but not in right location = (total color from # 5 - perfect from # 6)
+
+    right_color_wrong_location = colors_correct - perfect_match
+
+8. display to user # of perfect matches and # of remaining color matches
+    - puts "You have #{perfect_matches} perfect matches and #{right_color_wrong_location} other correct colors."
+
+9. return to step 3 and repeat.
