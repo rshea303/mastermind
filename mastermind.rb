@@ -4,17 +4,12 @@ require_relative 'game'
 require_relative 'guess_checker'
 
 new_game = Game.new
+player = Player.new #extra
+new_game.intro
 code_maker_solution = SolutionGenerator.new
 code_maker_array = code_maker_solution.solution_generator
 code_maker_solution.solution_color_count(code_maker_array)
 
-puts "Welcome to MASTERMIND!"
-
-puts "\nWhat is your name?"
-name = gets.chomp.downcase
-new_player = Player.new(name)
-
-new_game.intro
 response = gets.chomp.downcase
 
 loop do
@@ -33,15 +28,26 @@ loop do
   end
 end
 
-player_guess_string = gets.chomp.downcase
-new_player.player_guess(player_guess_string)
-new_player.player_color_count(new_player.player_guess_array)
-puts new_player.player_guess_array
-puts new_player.player_guess_color_count
+player_guess_string = gets.chomp.downcase #eeeeee
+player.player_guess(player_guess_string) #eeeeee
+player.player_color_count(player.player_guess_array) #eeeeee
+puts player.player_guess_array #eeeeee
+puts player.player_guess_color_count #eeeeeee
+
 puts code_maker_solution.new_random_solution
 puts code_maker_solution.code_maker_color_count
-# player_guess_to_solution = GuessChecker.new
-# player_guess_to_solution.perfect_match
+# => player_guess_to_solution = GuessChecker.new
+
+  perfect_match = 0
+  0.upto(3) do |n|
+    if player.player_guess_array[n] == code_maker_solution.new_random_solution[n]
+      perfect_match += 1
+    else
+      perfect_match
+    end
+  end
+  perfect_match
+puts perfect_match
 # #
 # #
 # puts "Correct colors = #{checker.correct_colors} Correct location = #{checker.perfect_match}"

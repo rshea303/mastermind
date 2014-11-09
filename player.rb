@@ -1,9 +1,8 @@
 class Player
-  attr_reader :name, :initial_color_quantities, :player_guess_array, :player_guess_color_count  # => nil
+  attr_reader :initial_color_quantities, :player_guess_array, :player_guess_color_count  # => nil
 
-  def initialize(name)
+  def initialize
     @initial_color_quantities = {"r" => 0, "b" => 0, "g" => 0, "y" => 0}
-    @name = name
     @player_guess_array = ['r', 'r', 'r', 'r']
     @player_guess_color_count = 0
   end

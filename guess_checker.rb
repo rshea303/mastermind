@@ -1,5 +1,6 @@
 require_relative 'player'
 require_relative 'solution_generator'
+require_relative 'game'
 
 class GuessChecker
 
@@ -19,15 +20,16 @@ class GuessChecker
     colors_correct
   end
 
-  def perfect_match
-    perfect_match = 0
-    0.upto(3) do |n|
-      if player_guess_array[n] == new_random_solution[n]
-        perfect_match += 1
-      else
-        perfect_match
-      end
-    end
-    perfect_match
-  end
+  # def perfect_match
+  #   puts "working"
+  #   perfect_match = 0
+  #   0.upto(3) do |n|
+  #     if player.player_guess_array[n] == code_maker_solution.new_random_solution[n]
+  #       perfect_match += 1
+  #     else
+  #       perfect_match
+  #     end
+  #   end
+  #   perfect_match
+  # end
 end
