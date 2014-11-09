@@ -8,17 +8,17 @@ class GuessChecker
     @color_options = ["r", "b", "g", "y"]
   end
 
-  def correct_colors
-    colors_correct = 0
-    base_colors.each do |color|
-      if player_guess[color] >= solution[color]
-        colors_correct += solution[color]
-      else
-        colors_correct += attempt[color]
-      end
-    end
-    colors_correct
-  end
+  # def correct_colors
+  #   colors_correct = 0
+  #   @color_options.each do |color|
+  #     if player.player_guess[color] >= solution[color]
+  #       colors_correct += solution[color]
+  #     else
+  #       colors_correct += attempt[color]
+  #     end
+  #   end
+  #   colors_correct
+  # end
 
   # def perfect_match
   #   puts "working"
