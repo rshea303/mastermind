@@ -1,37 +1,43 @@
 require_relative 'solution_generator'
 require_relative 'player'
 require_relative 'game'
-require_relative 'instructions'
 
 puts "Welcome to MASTERMIND!"
+%x( say "Welcome to MASTERMIND!")
+
 puts "\nWhat is your name?"
-name_entry = gets.chomp
+%x( say "What is your name?")
+
+name_entry = gets.chomp.downcase
 player = Player.new(name_entry)
+new_game = Game.new
 
-puts "Nice to meet you #{player.name}."
+%x( say "Nice to meet you #{player.name.capitalize}.")
+
 puts "\nWould you like to (p)lay, read the (i)nstructions, or (q)uit?"
+%x( say "Would you like to play, reed the instructions, or quit?")
 
-response = gets.chomp.downcase
-game = Game.new
-game.play_game
+loop do
+  response = gets.chomp.downcase
+  case response
+  when "p", "play"
+      new_game.play_game
+      break
+  when "i", "instructions"
+      new_game.mastermind_instructions
+      %x(say "Sounds fun, right?")
+      puts "\n\t(p)\n\t(i)nstructions\n\t(q)uit"
+      %x(say "Are you ready to play?  Or are you going to be a baby and quit.")
+  when "q", "quit"
+      new_game.end_game
+  else
+      puts "\nPlease enter a valid response."
+      %x( say "Please enter a valid response.")
+  end
+end
+
 mmsolution = SolutionGenerator.new
 solution = mmsolution.solution
-
-# if response == "p" || "play"
-#   play_game
-# # elsif
-# #   response == "i" || "instructions"
-# #   mastermind_instructions
-# # elsif
-# #   response == "q" || "quit"
-# #   player = 0
-# # else
-# #   puts "Please enter a valid response."
-# end
-
-puts "\nI have generated a beginner sequence with four elements made up of:
-(r)ed, (g)reen, (b)lue, and (y)ellow. \nUse (q)uit at any time to end the game.
-\nWhat's your guess?"
 
 answer = gets.chomp
 
