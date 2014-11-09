@@ -1,5 +1,7 @@
+require_relative 'player'
+require_relative 'solution_generator'
+
 class GuessChecker
-  attr_reader :player_guess, :base_colors
 
   def initialize
     @color_options = ["r", "b", "g", "y"]
@@ -20,7 +22,7 @@ class GuessChecker
   def perfect_match
     perfect_match = 0
     0.upto(3) do |n|
-      if attempt[n] == solution[n]
+      if player_guess_array[n] == new_random_solution[n]
         perfect_match += 1
       else
         perfect_match
@@ -29,8 +31,3 @@ class GuessChecker
     perfect_match
   end
 end
-
-# if __FILE__$0
-#   # solution = ["red", "blue", "green", "yellow"]
-#   # attempt = ["red", "green", "blue", "yellow"]
-# end

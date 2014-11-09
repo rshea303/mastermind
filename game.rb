@@ -1,4 +1,12 @@
+require_relative 'solution_generator'
+
 class Game
+  # attr_reader :code_maker_solution, :code_maker_array
+  #
+  # def initialize
+  #   @code_maker_solution = 0
+  #   @code_maker_array = 0
+  # end
 
   def intro
     puts "\nWould you like to (p)lay, read the (i)nstructions, or (q)uit?"
@@ -8,9 +16,6 @@ class Game
     puts "\nI have generated a beginner sequence with four elements made up of:
     \n(r)ed, (g)reen, (b)lue, and (y)ellow\nUse (q)uit at any time to end the game.
     \nPlease enter your first guess:"
-    code_maker_solution = SolutionGenerator.new
-    code_maker_array = code_maker_solution.solution_generator
-    code_maker_solution.solution_color_count(code_maker_array)
   end
 
   def end_game
