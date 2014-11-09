@@ -1,38 +1,37 @@
 class SolutionGenerator
-  attr_reader :game_starting_colors, :new_random_solution, :game_default_solution  # => nil
+  attr_reader :new_random_solution, :initial_color_quantities # => nil
 
   def initialize
-    @game_starting_colors = ["r", "b", "g", "y"]                       # => ["red", "blue", "green", "yellow"]
-    @new_random_solution = []                                                        # => []
-    @game_default_solution = {"r" => 0, "b" => 0, "g" => 0, "y" => 0}  # => {"red"=>0, "blue"=>0, "green"=>0, "yellow"=>0}
+    @color_options = ["r", "b", "g", "y"]                                 # => ["r", "b", "g", "y"]
+    @new_random_solution = []                                             # => []
+    @initial_color_quantities = {"r" => 0, "b" => 0, "g" => 0, "y" => 0}  # => {"r"=>0, "b"=>0, "g"=>0, "y"=>0}
   end
 
-  def solution
-    4.times do                                        # => 4
-      x = rand(3)                                     # => 0, 2, 0, 2
-      new_random_solution << game_starting_colors[x]  # => ["red"], ["red", "green"], ["red", "green", "red"], ["red", "green", "red", "green"]
-    end                                               # => 4
-    new_random_solution                               # => ["red", "green", "red", "green"]
+  def solution_generator
+    4.times do
+      x = rand(3)
+      new_random_solution << @color_options[x]
+    end
+    new_random_solution
   end
 
-  def solution_color_count
-    new_random_solution.reduce(game_default_solution) do |game_default_solution, color|  # => ["red", "green", "red", "green"]
-      game_default_solution[color] += 1; game_default_solution                           # => {"red"=>1, "blue"=>0, "green"=>0, "yellow"=>0}, {"red"=>1, "blue"=>0, "green"=>1, "yellow"=>0}, {"red"=>2, "blue"=>0, "green"=>1, "yellow"=>0}, {"red"=>2, "blue"=>0, "green"=>2, "yellow"=>0}
-    end                                                                                  # => {"red"=>2, "blue"=>0, "green"=>2, "yellow"=>0}
+  def solution_color_count(array)
+    array.reduce(initial_color_quantities) do |initial_color_quantities, color|
+      initial_color_quantities[color] += 1; initial_color_quantities
+    end
   end
 
 end
 
-if __FILE__ == $0                 # => true
-sample = SolutionGenerator.new    # => #<SolutionGenerator:0x007fe1fc8bc7f8 @game_starting_colors=["red", "blue", "green", "yellow"], @new_random_solution=[], @game_default_solution={"red"=>0, "blue"=>0, "green"=>0, "yellow"=>0}>
-puts sample.solution
-puts sample.solution.class              # => nil
+if __FILE__ == $0                       # => true
+sample = SolutionGenerator.new          # => #<SolutionGenerator:0x007fe54a89c5d8 @color_options=["r", "b", "g", "y"], @new_random_solution=[], @initial_color_quantities={"r"=>0, "b"=>0, "g"=>0, "y"=>0}>
+puts sample.solution                    # ~> NoMethodError: undefined method `solution' for #<SolutionGenerator:0x007fe54a89c5d8>
+puts sample.solution.class
 puts sample.solution_color_count
-puts sample.solution_color_count.class  # => nil
-end                               # => nil
+puts sample.solution_color_count.class
+end
 
-# >> red
-# >> green
-# >> red
-# >> green
-# >> {"red"=>2, "blue"=>0, "green"=>2, "yellow"=>0}
+# ~> NoMethodError
+# ~> undefined method `solution' for #<SolutionGenerator:0x007fe54a89c5d8>
+# ~>
+# ~> /Users/richshea/Turing/mastermind/solution_generator.rb:28:in `<main>'
