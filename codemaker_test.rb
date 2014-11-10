@@ -28,4 +28,11 @@ class CodeMakerTest < Minitest::Test
 
     assert_equal 'gggg', codemaker.game_solution
   end
+
+  def test_it_creates_a_random_solution
+    skip
+    code_maker = CodeMaker.new
+
+    assert_equal #expected random solution, code_maker.generate_random_solution
+  end
 end

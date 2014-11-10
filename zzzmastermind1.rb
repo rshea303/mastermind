@@ -38,32 +38,4 @@ puts code_maker_solution.new_random_solution
 puts code_maker_solution.code_maker_color_count
 # => player_guess_to_solution = GuessChecker.new
 
-  perfect_match = 0
-  0.upto(3) do |n|
-    if player.player_guess_array[n] == code_maker_solution.new_random_solution[n]
-      perfect_match += 1
-    else
-      perfect_match
-    end
-  end
-  perfect_match
-puts "You have #{perfect_match} in the correct location."
-
-  colors_correct = 0
-  ["r", "b", "g", "y"].each do |color|
-    if player.player_guess_color_count[color] >= code_maker_solution.code_maker_color_count[color]
-      colors_correct += code_maker_solution.code_maker_color_count[color]
-    else
-      colors_correct += player.player_guess_color_count[color]
-    end
-  end
-  colors_correct
-  puts "You have #{colors_correct} correct colors."
-
-# #
-# #
-# puts "Correct colors = #{checker.correct_colors} Correct location = #{checker.perfect_match}"
-
-#puts "Congratulations! You guessed the sequence"
-# in 8 guesses over 4 minutes, 22 seconds.
-# \nDo you want to (p)lay again or (q)uit?"
+  
