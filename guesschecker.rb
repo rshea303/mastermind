@@ -1,8 +1,11 @@
 class GuessChecker
-  attr_reader :initial_color_count
 
   def initialize
     @initial_color_count = { 'r' => 0, 'b' => 0, 'g' => 0, 'y' => 0 }
+  end
+
+  def initial_color_count
+    { 'r' => 0, 'b' => 0, 'g' => 0, 'y' => 0 }
   end
 
   def game_colors
@@ -40,6 +43,20 @@ class GuessChecker
           color_match += hash1[color]
         end
       end
-      color_match
+    color_match
+  end
+
+  def total_location_match(player, code_maker)
+    player_array = string_to_array(player)
+    code_maker_array = string_to_array(code_maker)
+    location_match(player_array, code_maker_array)
+  end
+
+  def total_correct_colors(player, code_maker)
+    player_array = string_to_array(player)
+    code_maker_array = string_to_array(code_maker)
+    player_hash = array_to_hash(player_array)
+    code_maker_hash = array_to_hash(code_maker_array)
+    color_match(player_hash, code_maker_hash)
   end
 end
