@@ -17,6 +17,11 @@ class CodeMakerTest < Minitest::Test
     assert_equal ['rrrr', 'bbbb', 'gggg', 'yyyy', 'ygbr'], codemaker.solution_bank
   end
 
+  def test_it_creates_a_random_solution
+    #need to stub out random action
+    skip
+  end
+
   def test_it_creates_a_new_solution
     codemaker = CodeMaker.new
     codemaker.generate_new_solution

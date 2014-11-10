@@ -16,10 +16,10 @@ class SolutionGenerator
     @new_random_solution
   end
 
-  def solution_color_count(array)
-    @code_maker_color_count =
-      array.reduce(initial_color_quantities) do |initial_color_quantities, color|
-      initial_color_quantities[color] += 1; initial_color_quantities
-    end
-  end
+  # def solution_color_count(array)
+  #   @code_maker_color_count =
+  #     array.reduce(initial_color_quantities) do |initial_color_quantities, color|
+  #     initial_color_quantities[color] += 1; initial_color_quantities
+  #   end
+  # end
 end
