@@ -20,7 +20,6 @@ class CLI
 
     response = gets.chomp.downcase
 
-    loop do
       case response
       when "p", "play"
         Game.new.play_game
@@ -36,10 +35,5 @@ class CLI
         puts "\nPlease enter a valid response."
         response = gets.chomp.downcase
       end
-    end
-  end
-
-  def quit
-    "\nGoodbye."
   end
 end

@@ -1,25 +1,21 @@
 require_relative 'messages'
 require_relative 'instructions'
+require_relative 'game'
 
-puts "Welcome to MASTERMIND\nWould you like to (p)lay, read the (i)nstructions, or (q)uit?"
 message = Messages.new
-response = ''
-response = gets.chomp.downcase
+puts message.intro
+puts message.play_instructions_quit
 
-loop do
-    case response
-    when "p", "play"
+response = gets.chomp.downcase
+    if response == "p" || response == "play"
       Game.new.play_game
-      break
-    when "i", "instructions"
+    elsif  response == "i" || response == "instructions"
       instructions = Instructions.new
       puts instructions.mastermind_instructions
-      exit
-    when "q", "quit"
+    elsif response == "q" || response == "quit"
       puts message.quit
       exit
     else
-      puts "\nPlease enter a valid response."
+      puts message.valid_response
       response = gets.chomp.downcase
     end
-end

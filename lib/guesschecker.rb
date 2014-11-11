@@ -1,4 +1,7 @@
 class GuessChecker
+  def match?
+    
+  end
 
   def initial_color_count
     { 'r' => 0, 'b' => 0, 'g' => 0, 'y' => 0 }
