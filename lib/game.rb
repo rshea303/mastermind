@@ -18,7 +18,7 @@ class Game
       @counter += 1
       puts "\nPlease enter a guess:"
       player_guess = gets.chomp
-      puts "Correct Location: #{guess_checker.total_location_match(player_guess, code_maker.solution)}  Total Colors Correct: #{@guess_checker.total_location_match(player_guess, code_maker.solution)}"
+      puts "Attempt: #{counter}  Correct Location: #{guess_checker.total_location_match(player_guess, code_maker.solution)}  Total Colors Correct: #{@guess_checker.total_location_match(player_guess, code_maker.solution)}"
     end
   end
 end
