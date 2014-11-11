@@ -86,3 +86,25 @@ classes I will need:
     - puts "You have #{perfect_matches} perfect matches and #{right_color_wrong_location} other correct colors."
 
 9. return to step 3 and repeat.
+
+10.  Loop
+game = Game.new
+game.intro
+
+response = gets.chomp.downcase
+
+loop do
+  case response
+  when "p", "play"
+      game.play_game
+      break
+  when "i", "instructions"
+      game.mastermind_instructions
+      puts "\n\t(p)\n\t(i)nstructions\n\t(q)uit"
+  when "q", "quit"
+      game.end_game
+  else
+      puts "\nPlease enter a valid response."
+      response = gets.chomp.downcase
+  end
+end
