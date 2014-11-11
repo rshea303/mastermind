@@ -1,12 +1,8 @@
 class Game
+  attr_reader :player_guess
 
-  def guess_prompt
-    "Please enter a guess"
-    @player_guess = gets.chomp
-  end
-
-  def retrieve_guess
-    'rrby'
+  def initialize(player_guess)
+    @player_guess = player_guess
   end
 
   def player_guess

@@ -22,7 +22,15 @@ class CLI
     loop do
        case response
        when "p", "play"
-           game = Game.new.guess_prompt
+          puts "\nPlease enter a guess:"
+          player_guess = gets.chomp
+          game = Game.new(player_guess)
+          code_maker = CodeMaker.new
+          code_maker.generate_solution
+          guess_checker = GuessChecker.new
+
+           puts "\nYou have #{guess_checker.total_location_match(game.player_guess, code_maker.solution)} correct colors. #{game.player_guess}"
+           puts "You have #{guess_checker.total_correct_colors(game.player_guess, code_maker.solution)} colors in the right location. #{code_maker.solution}"
            break
        when "i", "instructions"
            puts self.instructions
