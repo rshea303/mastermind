@@ -18,17 +18,19 @@ class Game
     player_guess = ""
     until guess_checker.total_location_match(player_guess, code_maker.solution) == 4
       @counter += 1
-      puts "\nPlease enter a guess:"
+      print "\nPlease enter a guess:"
+      print "\n> "
       player_guess = gets.chomp
       puts "#{code_maker.solution} Attempt: #{counter}  Correct Location: #{guess_checker.total_location_match(player_guess, code_maker.solution)}  Total Colors Correct: #{guess_checker.total_location_match(player_guess, code_maker.solution)}"
     end
      puts "Winner!"
      puts "\nWould you like to play again? (y)es or (n)o"
+     print "> "
      answer = gets.chomp.downcase
      if answer == "y" || answer == "yes"
        Game.new.play_game
-     elsif 
-       puts "Goodbye!"
+     elsif
+       puts "\nGoodbye!"
        exit
      end
   end

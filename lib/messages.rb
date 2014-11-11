@@ -11,7 +11,7 @@ class Messages
   end
 
   def play_instructions_quit
-    "\nWould you like to (p)lay, read the (i)nstructions, or (q)uit?"
+    "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
   end
 
   def play_game_intro
