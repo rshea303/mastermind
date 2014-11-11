@@ -3,6 +3,7 @@ require_relative 'game'
 require_relative 'guesschecker'
 require_relative 'player'
 require_relative 'statements'
+require_relative 'instructions'
 
 class CLI
   attr_reader :command, :input, :output
@@ -25,8 +26,9 @@ class CLI
         Game.new.play_game
         break
       when "i", "instructions"
-        puts self.instructions
-        self.call
+        instructions = Instructions.new
+        puts instructions.mastermind_instructions
+        exit
       when "q", "quit"
         puts self.quit
         exit
@@ -35,10 +37,6 @@ class CLI
         response = gets.chomp.downcase
       end
     end
-  end
-
-  def instructions
-    "\nHere are the Mastermind instructions."
   end
 
   def quit
