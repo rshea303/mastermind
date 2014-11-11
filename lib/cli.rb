@@ -14,7 +14,7 @@ class CLI
   end
 
   def call
-    puts "Welcome to Mastermind!"
+    puts "\nWelcome to Mastermind!"
     puts "Enter (p)lay, (i)nstructions, or (q)uit"
 
     response = gets.chomp.downcase
@@ -26,9 +26,10 @@ class CLI
            break
        when "i", "instructions"
            puts self.instructions
-           "\nEnter (p)lay, (i)nstructions, (q)uit"
+           self.call
        when "q", "quit"
            puts self.quit
+           exit
        else
            puts "\nPlease enter a valid response."
            response = gets.chomp.downcase
@@ -37,7 +38,7 @@ class CLI
   end
 
   def instructions
-    "\nMastermind instructions."
+    "\nHere are the Mastermind instructions."
   end
 
   def quit
