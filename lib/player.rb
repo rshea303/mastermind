@@ -6,8 +6,4 @@ class Player
     @guess = guess
   end
 
-  def to_array
-    guess.split('')
-  end
-
 end

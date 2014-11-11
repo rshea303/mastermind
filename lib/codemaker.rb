@@ -1,16 +1,28 @@
 class CodeMaker
-  attr_reader :solution, :game_solution
+  attr_reader :new_random_solution
 
-  def initialize(solution = 'rbgy')
-    @solution = solution
+  def initialize
+    @color_options = ["r", "b", "g", "y"]
+    @new_random_solution = []
   end
 
-  def generate_new_solution
-    @game_solution = solution_bank[2]
+  def generate_solution
+    4.times do
+      x = rand(3)
+      @new_random_solution << @color_options[x]
+    end
+    @solution = @new_random_solution.join('')
   end
 
-  def solution_bank
-    ['rrrr', 'bbbb', 'gggg', 'yyyy', 'ygbr']
+  def solution
+    @solution ||= 'rgby'
   end
+end
 
+if __FILE__ == $0
+  codemaker = CodeMaker.new
+  puts codemaker.solution
+  codemaker.generate_solution
+  puts codemaker.new_random_solution
+  puts codemaker.solution
 end
