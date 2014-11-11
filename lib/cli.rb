@@ -20,29 +20,20 @@ class CLI
     response = gets.chomp.downcase
 
     loop do
-       case response
-       when "p", "play"
-          puts "\nPlease enter a guess:"
-          player_guess = gets.chomp
-          game = Game.new(player_guess)
-          code_maker = CodeMaker.new
-          code_maker.generate_solution
-          guess_checker = GuessChecker.new
-          puts "\nPlayer guess: #{game.player_guess}"
-          puts "Solution:     #{code_maker.solution}"
-           puts "\nYou have #{guess_checker.total_location_match(game.player_guess, code_maker.solution)} colors in the right location."
-           puts "You have #{guess_checker.total_correct_colors(game.player_guess, code_maker.solution)} total correct colors."
-           break
-       when "i", "instructions"
-           puts self.instructions
-           self.call
-       when "q", "quit"
-           puts self.quit
-           exit
-       else
-           puts "\nPlease enter a valid response."
-           response = gets.chomp.downcase
-       end
+      case response
+      when "p", "play"
+        Game.new.play_game
+        break
+      when "i", "instructions"
+        puts self.instructions
+        self.call
+      when "q", "quit"
+        puts self.quit
+        exit
+      else
+        puts "\nPlease enter a valid response."
+        response = gets.chomp.downcase
+      end
     end
   end
 
