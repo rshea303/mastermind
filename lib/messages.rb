@@ -7,7 +7,7 @@ class Messages
   end
 
   def intro
-    "Welcome to MASTERMIND"
+    "\nWelcome to MASTERMIND"
   end
 
   def play_instructions_quit
