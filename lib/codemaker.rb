@@ -8,7 +8,7 @@ class CodeMaker
 
   def generate_solution
     4.times do
-      x = rand(3)
+      x = rand(4)
       @new_random_solution << @color_options[x]
     end
     @solution = @new_random_solution.join('')

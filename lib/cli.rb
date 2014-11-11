@@ -28,9 +28,10 @@ class CLI
           code_maker = CodeMaker.new
           code_maker.generate_solution
           guess_checker = GuessChecker.new
-
-           puts "\nYou have #{guess_checker.total_location_match(game.player_guess, code_maker.solution)} correct colors. #{game.player_guess}"
-           puts "You have #{guess_checker.total_correct_colors(game.player_guess, code_maker.solution)} colors in the right location. #{code_maker.solution}"
+          puts "\nPlayer guess: #{game.player_guess}"
+          puts "Solution:     #{code_maker.solution}"
+           puts "\nYou have #{guess_checker.total_location_match(game.player_guess, code_maker.solution)} colors in the right location."
+           puts "You have #{guess_checker.total_correct_colors(game.player_guess, code_maker.solution)} total correct colors."
            break
        when "i", "instructions"
            puts self.instructions
