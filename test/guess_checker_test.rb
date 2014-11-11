@@ -58,7 +58,7 @@ class GuessCheckerTest < Minitest::Test
 
   def test_it_can_calculate_location_matches_between_player_and_codemaker
     guess_checker = GuessChecker.new                                       # => #<GuessChecker:0x007f9b3a9c1af8 @initial_color_count={"r"=>0, "b"=>0, "g"=>0, "y"=>0}>
-    code_maker = CodeMaker.new('rrry')                                     # => #<CodeMaker:0x007f9b3a9c17d8 @solution="rrry">
+    code_maker = CodeMaker.new                                     # => #<CodeMaker:0x007f9b3a9c17d8 @solution="rrry">
     player = Player.new("George", 'rrrb')                                  # => #<Player:0x007f9b3a9c1620 @name="George", @guess="rrrb">
 
     assert_equal 3, guess_checker.total_location_match(player.guess, code_maker.solution)  # => true
@@ -66,7 +66,7 @@ class GuessCheckerTest < Minitest::Test
 
   def test_it_can_calculate_number_of_correct_colors_between_player_and_codemaker
     guess_checker = GuessChecker.new                                               # => #<GuessChecker:0x007f9b3a9b9ec0 @initial_color_count={"r"=>0, "b"=>0, "g"=>0, "y"=>0}>
-    code_maker = CodeMaker.new('rrry')                                             # => #<CodeMaker:0x007f9b3a9b9948 @solution="rrry">
+    code_maker = CodeMaker.new                                            # => #<CodeMaker:0x007f9b3a9b9948 @solution="rrry">
     player = Player.new("George", 'rrrb')                                          # => #<Player:0x007f9b3a9b96a0 @name="George", @guess="rrrb">
     assert_equal 3, guess_checker.total_correct_colors(player.guess, code_maker.solution)
   end

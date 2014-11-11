@@ -1,5 +1,5 @@
 class GuessChecker
-
+  
   def initial_color_count
     { 'r' => 0, 'b' => 0, 'g' => 0, 'y' => 0 }
   end
@@ -55,4 +55,7 @@ class GuessChecker
     code_maker_hash = array_to_hash(code_maker_array)
     color_match(player_hash, code_maker_hash)
   end
+end
+
+if __FILE__ == $0
 end

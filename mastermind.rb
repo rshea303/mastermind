@@ -1,5 +1,5 @@
-lib_path = FILE.expand_path('lib', '__dir__')
-$LOAD_PATH.unshift(lib_path)
+lib_dir = File.expand_path('lib', __dir__)
+$LOAD_PATH.unshift(lib_dir)
 require 'cli'
 
 CLI.new($stdin, $stdout).call

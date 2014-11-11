@@ -15,7 +15,7 @@ class CodeMaker
   end
 
   def solution
-    @solution ||= 'rgby'
+    @solution ||= 'rrry'
   end
 end
 
