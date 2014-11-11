@@ -14,11 +14,13 @@ class Game
 
   def play_game
     @code_maker.generate_solution
-    until @guess_checker.match?
+    player_guess = ""
+    until guess_checker.total_location_match(player_guess, code_maker.solution) == 4
       @counter += 1
       puts "\nPlease enter a guess:"
       player_guess = gets.chomp
-      puts "Attempt: #{counter}  Correct Location: #{guess_checker.total_location_match(player_guess, code_maker.solution)}  Total Colors Correct: #{@guess_checker.total_location_match(player_guess, code_maker.solution)}"
+      puts "#{code_maker.solution} Attempt: #{counter}  Correct Location: #{guess_checker.total_location_match(player_guess, code_maker.solution)}  Total Colors Correct: #{guess_checker.total_location_match(player_guess, code_maker.solution)}"
     end
+     puts "Winner!"
   end
 end
