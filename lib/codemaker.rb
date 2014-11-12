@@ -1,5 +1,5 @@
 class CodeMaker
-  attr_reader :new_random_solution
+  attr_reader :new_random_solution, :color_options
 
   def initialize
     @color_options = ["r", "b", "g", "y"]

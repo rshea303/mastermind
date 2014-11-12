@@ -31,8 +31,4 @@ class Messages
   def valid_response
     "\nPlease enter a valid response."
   end
-  #
-  # def guess_feedback
-  #   "Correct Location: #{guess_checker.total_location_match(player_guess, code_maker.solution)}  Total Colors Correct: #{guess_checker.total_location_match(player_guess, code_maker.solution)}"
-  # end
 end
