@@ -21,7 +21,8 @@ class Messages
   end
 
   def enter_guess_prompt
-    "Please enter a guess:"
+    puts "\nPlease enter a guess:"
+    print "> "
   end
 
   def game_over
@@ -29,6 +30,12 @@ class Messages
   end
 
   def valid_response
-    "\nPlease enter a valid response."
+    puts "\nPlease enter a valid response.\n4 total characters consisting of the letters:\n(r)ed, (b)lue, (g)reen, and (y)ellow."
+    print "> "
+  end
+
+  def play_again
+    puts "\nWould you like to play again? (y)es or (n)o"
+    print "> "
   end
 end

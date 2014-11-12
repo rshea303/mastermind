@@ -20,28 +20,25 @@ class Game
     player_guess = ""
     until guess_checker.location_match(player_guess, code_maker.solution) == 4
       @counter += 1
-      print "\nPlease enter a guess:"
-      print "\n> "
+      game_message.enter_guess_prompt
       player_guess = gets.chomp
         until GuessValidation.new(player_guess).valid_answer_check?
-          puts "\nPlease enter a valid response"
-          print "\n> "
+          game_message.valid_response
           player_guess = gets.chomp
         end
-      puts "#{code_maker.solution} Attempt: #{counter}  Correct Location: #{guess_checker.location_match(player_guess, code_maker.solution)}  Total Correct Colors: #{guess_checker.total_correct_colors(player_guess, code_maker.solution)}"
+      puts "#{code_maker.solution} Attempt: #{counter}  '#{player_guess.upcase}' has #{guess_checker.total_correct_colors(player_guess, code_maker.solution)} of the correct elements with #{guess_checker.location_match(player_guess, code_maker.solution)} in the correct positions."
     end
     finish_time = Time.now
     time_elapse = finish_time - start_time
     minutes = time_elapse.to_i / 60
     seconds = time_elapse.to_i % 60
-    puts "Congratulations! You guessed the sequence '#{code_maker.solution.upcase}' in #{counter} guesses over #{minutes} minutes, #{seconds} seconds."
-    puts "\nWould you like to play again? (y)es or (n)o"
-    print "> "
+    puts "\nCongratulations! You guessed the sequence '#{code_maker.solution.upcase}' in #{counter} guesses over #{minutes} minutes, #{seconds} seconds."
+    game_message.play_again
     answer = gets.chomp.downcase
       if answer == "y" || answer == "yes"
         Game.new.play_game
       elsif
-        puts "\nGoodbye!"
+        puts game_message.quit
         exit
       end
   end
