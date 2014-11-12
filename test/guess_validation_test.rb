@@ -4,52 +4,46 @@ require 'minitest/pride'                    # => true
 require_relative '../lib/guess_validation'  # => true
 
 class GuessValidationTest < Minitest::Test
-  def test_it_validates_guess_length
-    validate = GuessValidation.new('rrrr')  # => #<GuessValidation:0x007f8bf91bcb78 @input="rrrr", @color_check=false>
-    result = validate.word_length           # => 4
 
-    assert_equal 4, result  # => true
+  def test_it_refutes_for_length_greater_than_expected
+    validate = GuessValidation.new('rrrrr') # => false
+
+    refute validate.valid_answer_check?
   end
 
-  def test_it_validates_a_different_guess
-    validate = GuessValidation.new('rrrryyyy')  # => #<GuessValidation:0x007f8bf91bd2a8 @input="rrrryyyy", @color_check=false>
-    result = validate.word_length               # => 8
+  def test_it_refutes_for_length_shorter_than_expected
+    validate = GuessValidation.new('rr')
 
-    assert_equal 8, result  # => true
+    refute validate.valid_answer_check?
   end
 
-  def test_it_reports_if_size_is_not_equal_to_four
-    validate = GuessValidation.new('rrr')           # => #<GuessValidation:0x007f8bf91be540 @input="rrr", @color_check=false>
-    result = validate.valid_size                    # => "Invalid Guess"
+  def test_it_asserts_for_accurate_length
+    validate = GuessValidation.new('yyyy')
 
-    assert_equal "Invalid Guess", result  # => true
+    assert validate.valid_answer_check?
   end
 
-  def test_it_validates_guess_characters_are_colors
-    validate = GuessValidation.new('rrbb')           # => #<GuessValidation:0x007f8bf91bd8e8 @input="rrbb", @color_check=false>
-                                # => false
+  def test_it_asserts_for_correct_color_options
+    validate = GuessValidation.new('rbry')   # => true
 
-    assert validate.color_check?
+    assert validate.valid_answer_check?
   end
 
-  def test_it_refutes_guess_that_has_invalid_characters
-    validate = GuessValidation.new('ttry')
+  def test_it_asserts_for_different_set_of_correct_colors
+    validate = GuessValidation.new('ggbb')   # => true
 
-    refute validate.color_check?
+    assert validate.valid_answer_check?
+  end
+
+  def test_it_refutes_for_correct_color_options
+    validate = GuessValidation.new('xxxx')   # => false
+
+    refute validate.valid_answer_check? # => false
+  end
+
+  def test_it_refutes_for_different_color_options
+    validate = GuessValidation.new('rxrr')
+
+    refute validate.valid_answer_check?
   end
 end
-
-# >> Run options: --seed 21448
-# >>
-# >> # Running:
-# >>
-# >> [38;5;154m.[0m[41m[37mE[0m[38;5;154m.[0m[38;5;148m.[0m
-# >>
-# >> [38;5;154mF[0m[38;5;154ma[0m[38;5;148mb[0m[38;5;184mu[0m[38;5;184ml[0m[38;5;214mo[0m[38;5;214mu[0m[38;5;208ms[0m[38;5;208m [0m[38;5;203mr[0m[38;5;203mu[0m[38;5;198mn[0m in 0.001133s, 3530.4501 runs/s, 2647.8376 assertions/s.
-# >>
-# >>   1) Error:
-# >> GuessValidationTest#test_it_validates_guess_characters_are_colors:
-# >> NoMethodError: undefined method `color_check?' for #<GuessValidationTest:0x007f8bf91bdb18>
-# >>     /Users/richshea/Turing/mastermind/test/guess_validation_test.rb:32:in `test_it_validates_guess_characters_are_colors'
-# >>
-# >> 4 runs, 3 assertions, 0 failures, 1 errors, 0 skips

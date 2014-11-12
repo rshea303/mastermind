@@ -1,34 +1,15 @@
 class GuessValidation
 
   def initialize(input)
-    @input = input
-    @color_check = false
+    @input = input       # => "rrrrr", "rr", "rrrr", "xxxx", "rxrr", "rbry"
   end
 
-  def word_length
-    @input.length
-  end
-
-  def valid_size
-    if word_length == 4
-      'Yes'
+  def valid_answer_check?
+    colors = ['r', 'b', 'g', 'y']                               # => ["r", "b", "g", "y"], ["r", "b", "g", "y"], ["r", "b", "g", "y"], ["r", "b", "g", "y"], ["r", "b", "g", "y"], ["r", "b", "g", "y"]
+    if @input.length == 4                                       # => false, false, true, true, true, true
+      @input.split('').all? { |color| colors.include?(color) }  # => true, false, false, true
     else
-      'Invalid Guess'
-    end
+      false                                                     # => false, false
+    end                                                         # => false, false, true, false, false, true
   end
-
-  def color_check?
-    colors = ['r', 'b', 'g', 'y']
-    @input.split('').all? { |color| colors.include?(color) }
-  end
-
-  # def color_check
-  #   colors = ['r', 'b', 'g', 'y']
-  #   @input.each_char do |n|
-  #     colors.include?(n)
-  #   else
-  #     @color_check = false
-  #   end
-  #   #@input.include?(/[rbgy]/)
-  # end
 end

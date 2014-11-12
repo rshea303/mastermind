@@ -2,6 +2,7 @@ require_relative 'codemaker'
 require_relative 'guesschecker'
 require_relative 'messages'
 require_relative 'game'
+require_relative 'guess_validation'
 
 class Game
   attr_reader :counter, :game_message, :guess_checker, :code_maker
@@ -21,6 +22,11 @@ class Game
       print "\nPlease enter a guess:"
       print "\n> "
       player_guess = gets.chomp
+        until GuessValidation.new(player_guess).valid_answer_check?
+          puts "\nPlease enter a valid response"
+          print "\n> "
+          player_guess = gets.chomp
+        end
       puts "#{code_maker.solution} Attempt: #{counter}  Correct Location: #{guess_checker.location_match(player_guess, code_maker.solution)}  Total Correct Colors: #{guess_checker.total_correct_colors(player_guess, code_maker.solution)}"
     end
      puts "Winner!"
