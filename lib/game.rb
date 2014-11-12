@@ -31,7 +31,10 @@ class Game
       puts "#{code_maker.solution} Attempt: #{counter}  Correct Location: #{guess_checker.location_match(player_guess, code_maker.solution)}  Total Correct Colors: #{guess_checker.total_correct_colors(player_guess, code_maker.solution)}"
     end
     finish_time = Time.now
-    puts "Congratulations! You guessed the sequence '#{code_maker.solution.upcase}' in #{counter} guesses over #{finish_time - start_time}."
+    time_elapse = finish_time - start_time
+    minutes = time_elapse.to_i / 60
+    seconds = time_elapse.to_i % 60
+    puts "Congratulations! You guessed the sequence '#{code_maker.solution.upcase}' in #{counter} guesses over #{minutes} minutes, #{seconds} seconds."
     puts "\nWould you like to play again? (y)es or (n)o"
     print "> "
     answer = gets.chomp.downcase
