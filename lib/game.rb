@@ -15,6 +15,7 @@ class Game
   end
 
   def play_game
+    start_time = Time.now
     @code_maker.generate_solution
     player_guess = ""
     until guess_checker.location_match(player_guess, code_maker.solution) == 4
@@ -29,15 +30,16 @@ class Game
         end
       puts "#{code_maker.solution} Attempt: #{counter}  Correct Location: #{guess_checker.location_match(player_guess, code_maker.solution)}  Total Correct Colors: #{guess_checker.total_correct_colors(player_guess, code_maker.solution)}"
     end
-     puts "Winner!"
-     puts "\nWould you like to play again? (y)es or (n)o"
-     print "> "
-     answer = gets.chomp.downcase
-     if answer == "y" || answer == "yes"
-       Game.new.play_game
-     elsif
-       puts "\nGoodbye!"
-       exit
-     end
+    finish_time = Time.now
+    puts "Congratulations! You guessed the sequence '#{code_maker.solution.upcase}' in #{counter} guesses over #{finish_time - start_time}."
+    puts "\nWould you like to play again? (y)es or (n)o"
+    print "> "
+    answer = gets.chomp.downcase
+      if answer == "y" || answer == "yes"
+        Game.new.play_game
+      elsif
+        puts "\nGoodbye!"
+        exit
+      end
   end
 end
