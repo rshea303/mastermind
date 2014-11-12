@@ -16,12 +16,12 @@ class Game
   def play_game
     @code_maker.generate_solution
     player_guess = ""
-    until guess_checker.total_location_match(player_guess, code_maker.solution) == 4
+    until guess_checker.location_match(player_guess, code_maker.solution) == 4
       @counter += 1
       print "\nPlease enter a guess:"
       print "\n> "
       player_guess = gets.chomp
-      puts "#{code_maker.solution} Attempt: #{counter}  Correct Location: #{guess_checker.total_location_match(player_guess, code_maker.solution)}  Total Colors Correct: #{guess_checker.total_location_match(player_guess, code_maker.solution)}"
+      puts "#{code_maker.solution} Attempt: #{counter}  Correct Location: #{guess_checker.location_match(player_guess, code_maker.solution)}  Total Correct Colors: #{guess_checker.total_correct_colors(player_guess, code_maker.solution)}"
     end
      puts "Winner!"
      puts "\nWould you like to play again? (y)es or (n)o"

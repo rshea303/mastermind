@@ -53,7 +53,7 @@ end
 
 if __FILE__ == $0
   guess_checker = GuessChecker.new
-  player = 'rrrb'
+  player = 'rrbg'
   code_maker = 'rrgb'
   x = guess_checker.location_match(player, code_maker)
   y = guess_checker.total_correct_colors(player, code_maker)
