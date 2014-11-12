@@ -1,17 +1,24 @@
 class GuessChecker
   attr_reader :total_color_match
 
-
-  def location_match(array1, array2)
+  def location_match(player, code_maker)
     location_match = 0
     0.upto(3) do |n|
-      if array1[n] == array2[n]
+      if player.split('')[n] == code_maker.split('')[n]
         location_match += 1
       else
         location_match
       end
     end
     location_match
+  end
+
+  def total_correct_colors(player, code_maker)
+    player_hash      = counts_for(player.split(''))
+    code_maker_hash  = counts_for(code_maker.split(''))
+    color_match(player_hash, code_maker_hash)
+
+    # color_match(counts_for(guess), counts_for(secret))
   end
 
   def color_match(hash1, hash2)
@@ -26,21 +33,6 @@ class GuessChecker
     total_color_match
   end
 
-  def total_location_match(player, code_maker)
-    player_array     = string_to_array(player)
-    code_maker_array = string_to_array(code_maker)
-    location_match(player_array, code_maker_array)
-  end
-
-  def total_correct_colors(player, code_maker)
-    player_array     = string_to_array(player)
-    code_maker_array = string_to_array(code_maker)
-    player_hash      = array_to_hash(player_array)
-    code_maker_hash  = array_to_hash(code_maker_array)
-    color_match(player_hash, code_maker_hash)
-
-    # color_match(counts_for(guess), counts_for(secret))
-  end
 
   private
 
@@ -52,11 +44,7 @@ class GuessChecker
     ['r', 'b', 'g', 'y']
   end
 
-  def string_to_array(string)
-    string.split('')
-  end
-
-  def array_to_hash(array)
+  def counts_for(array)
     array.reduce(initial_color_count) do |initial_color_count, color|
       initial_color_count[color] += 1; initial_color_count
     end
@@ -64,4 +52,13 @@ class GuessChecker
 end
 
 if __FILE__ == $0
+  guess_checker = GuessChecker.new
+  player = 'rrrb'
+  code_maker = 'rrgb'
+  x = guess_checker.location_match(player, code_maker)
+  y = guess_checker.total_correct_colors(player, code_maker)
+  puts "#{code_maker}"
+  puts "#{player}"
+  puts "#{x} in the right location"
+  puts "#{y} total correct elements"
 end
