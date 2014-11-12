@@ -5,7 +5,7 @@ require_relative 'game'
 require_relative 'guess_validation'
 
 class Game
-  attr_reader :counter, :game_message, :guess_checker, :code_maker
+  attr_reader :counter, :game_message, :guess_checker, :code_maker, :player_guess
 
   def initialize
     @code_maker = CodeMaker.new
@@ -20,20 +20,24 @@ class Game
     player_guess = ""
     until guess_checker.location_match(player_guess, code_maker.solution) == 4
       @counter += 1
-      game_message.enter_guess_prompt
+      puts game_message.enter_guess_prompt
+      print "> "
       player_guess = gets.chomp
         until GuessValidation.new(player_guess).valid_answer_check?
-          game_message.valid_response
+          puts game_message.valid_response
+          print "> "
           player_guess = gets.chomp
         end
-      puts "#{code_maker.solution} Attempt: #{counter}  '#{player_guess.upcase}' has #{guess_checker.total_correct_colors(player_guess, code_maker.solution)} of the correct elements with #{guess_checker.location_match(player_guess, code_maker.solution)} in the correct positions."
+      #puts "#{solution} Attempt: #{counter}  '#{player_guess.upcase}' has #{colors} of the correct elements with #{positions} in the correct position."
+      puts "#{solution} Attempt: #{counter}  '#{player_guess.upcase}' has #{guess_checker.total_correct_colors(player_guess, code_maker.solution)} of the correct elements with #{guess_checker.location_match(player_guess, code_maker.solution)} in the correct positions."
     end
     finish_time = Time.now
     time_elapse = finish_time - start_time
     minutes = time_elapse.to_i / 60
     seconds = time_elapse.to_i % 60
     puts "\nCongratulations! You guessed the sequence '#{code_maker.solution.upcase}' in #{counter} guesses over #{minutes} minutes, #{seconds} seconds."
-    game_message.play_again
+    puts game_message.play_again
+    print "> "
     answer = gets.chomp.downcase
       if answer == "y" || answer == "yes"
         Game.new.play_game
@@ -42,4 +46,22 @@ class Game
         exit
       end
   end
+
+  #private
+
+  def solution
+    code_maker.solution
+  end
+  #
+  def colors
+    guess_checker.total_correct_colors(player_guess, code_maker.solution)
+  end
+  #
+  # def positions
+  #   guess_checker.location_match(player_guess, code_maker.solution)
+  # end
+
+  # def game_message
+  #   puts game_message.turn_result(solution, counter, player_guess, colors, positions)
+  # end
 end
