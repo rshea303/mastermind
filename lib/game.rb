@@ -36,16 +36,10 @@ class Game
             end
           end
         end
-        codemaker_feedback(player_guess)
+        puts codemaker_feedback(player_guess)
     end
     finish_time = Time.now
     winner(start_time, finish_time)
-  end
-
-  def codemaker_feedback(guess)
-    puts "'#{solution}' = solution" #this is just for guess verification during manual testing
-    puts "'#{guess.upcase}' has #{guess_checker.total_correct_colors(guess, solution)} of the correct elements with #{guess_checker.location_match(guess, solution)} in the correct positions."
-    puts "You've taken #{counter} guess"
   end
 
   def winner(start_time, finish_time)
@@ -55,10 +49,6 @@ class Game
     puts "\nCongratulations! You guessed the sequence '#{solution.upcase}' in #{counter} guesses over #{minutes} minutes, #{seconds} seconds."
     play_again?
   end
-
-  # def solution_found?
-  #   guess_checker.location_match(player_guess, solution) == 4
-  # end
 
   def play_again?
     puts game_message.play_again
@@ -72,11 +62,19 @@ class Game
       end
   end
 
+  def codemaker_feedback(guess)
+    total_correct = guess_checker.total_correct_colors(guess, solution)
+    location_match = guess_checker.location_match(guess, solution)
+    puts "'#{solution.upcase}' = solution" #this is just for guess verification during manual testing
+    puts "'#{guess.upcase}' has #{total_correct} of the correct elements with #{location_match} in the correct positions."
+    puts "You've taken #{counter} guess"
+  end
+
   #private
 
-  def colors
-    guess_checker.total_correct_colors(player_guess, code_maker.solution)
-  end
+  # def colors
+  #   guess_checker.total_correct_colors(guess, solution)
+  # end
   #
   # def positions
   #   guess_checker.location_match(player_guess, code_maker.solution)
