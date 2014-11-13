@@ -67,7 +67,11 @@ class Game
     location_match = guess_checker.location_match(guess, solution)
     puts "'#{solution.upcase}' = solution" #this is just for guess verification during manual testing
     puts "'#{guess.upcase}' has #{total_correct} of the correct elements with #{location_match} in the correct positions."
-    puts "You've taken #{counter} guess"
+      unless counter == 1
+        puts "You've taken #{counter} guesses"
+      else
+        puts "You've taken #{counter} guess"
+      end
   end
 
   #private

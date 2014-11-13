@@ -3,7 +3,7 @@ class Messages
   def quit
     "\nGoodbye."
   end
-  
+
   def mastermind_instructions
     puts "\nA sequence of colors is chosen by the code maker."
     puts "The object of the game is for the player to match the colored sequence"
@@ -19,7 +19,7 @@ class Messages
   end
 
   def play_instructions_quit
-    "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+    "\nWould you like to (p)lay, read the (i)nstructions, or (q)uit?"
   end
 
   def play_game_intro
