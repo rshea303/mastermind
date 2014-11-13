@@ -23,7 +23,7 @@ class Game
 
   def play_game
     player_guess = ''
-      until win?
+      until win?(player_guess, solution)
         puts game_message.enter_guess_prompt
         print "> "
         player_guess = gets.chomp
@@ -50,7 +50,7 @@ class Game
     player_guess == "q" || player_guess == "quit"
   end
 
-  def win?
+  def win?(player_guess, solution)
     player_guess == solution
   end
 
