@@ -63,28 +63,26 @@ class Game
   end
 
   def codemaker_feedback(guess)
-    total_correct = guess_checker.total_correct_colors(guess, solution)
-    location_match = guess_checker.location_match(guess, solution)
-    puts "'#{solution.upcase}' = solution" #this is just for guess verification during manual testing
-    puts "'#{guess.upcase}' has #{total_correct} of the correct elements with #{location_match} in the correct positions."
+    puts " '#{solution.upcase}' = solution" #this is just for guess verification during manual testing
+    puts " '#{guess.upcase}' has #{colors(guess, solution)} of the correct elements with #{positions(guess, solution)} in the correct positions."
     if counter == 1
-      puts "You've taken #{counter} guess"
+      puts " You've taken #{counter} guess"
     else
-      puts "You've taken #{counter} guesses"
+      puts " You've taken #{counter} guesses"
     end
   end
 
-  #private
+  private
 
-  # def colors
-  #   guess_checker.total_correct_colors(guess, solution)
-  # end
-  #
-  # def positions
-  #   guess_checker.location_match(player_guess, code_maker.solution)
-  # end
+  def colors(guess, solution)
+    guess_checker.total_correct_colors(guess, solution)
+  end
 
-  # def game_message
-  #   puts game_message.turn_result(solution, counter, player_guess, colors, positions)
+  def positions(guess, solution)
+    guess_checker.location_match(guess, solution)
+  end
+
+  #def game_message
+  #   puts game_message.codemaker_feedback(solution, counter, player_guess, colors, positions)
   # end
 end
