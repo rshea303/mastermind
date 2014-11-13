@@ -5,7 +5,12 @@ require_relative 'game'              # => false, true
 require_relative 'guess_validation'  # => true, false
 
 class Game
-  attr_reader :counter, :game_message, :guess_checker, :solution, :player_guess, :start_time                                                         # => nil, nil
+  attr_reader :counter,
+              :game_message,
+              :guess_checker,
+              :solution,
+              :player_guess,
+              :start_time  # => nil, nil
 
   def initialize
     @solution = CodeMaker.new.generate_solution
@@ -13,33 +18,40 @@ class Game
     @game_message = Messages.new
     @counter = 0
     @start_time = Time.now
+    @player_guess = player_guess
   end
 
   def play_game
     player_guess = ''
-    until guess_checker.location_match(player_guess, solution) == 4
-      @counter += 1
-      puts game_message.enter_guess_prompt
-      print "> "
-      player_guess = gets.chomp.downcase
-        if player_guess == "q" || player_guess == "quit"
-          puts game_message.quit
-          exit
-        else
-          until GuessValidation.new(player_guess).valid_answer_check?
-            puts game_message.valid_response
-            print "> "
-            player_guess = gets.chomp.downcase
-            if player_guess == "q" || player_guess == "quit"
-              puts game_message.quit
-              exit
-            end
-          end
+      until win?
+        puts game_message.enter_guess_prompt
+        print "> "
+        player_guess = gets.chomp
+        game_over if player_guess == 'q' || player_guess == 'quit'
+        @counter += 1
+        until GuessValidation.new(player_guess).valid_answer_check?
+          puts game_message.invalid_response
+          print "> "
+          player_guess = gets.chomp.downcase
+          game_over if player_guess == 'q' || player_guess == 'quit'
         end
         codemaker_feedback(player_guess)
-    end
-    finish_time = Time.now
-    winner(start_time, finish_time)
+      end
+      finish_time = Time.now
+      winner(start_time, finish_time)
+  end
+
+  def game_over
+    puts game_message.quit
+    exit
+  end
+
+  def quit?(player_guess)
+    player_guess == "q" || player_guess == "quit"
+  end
+
+  def win?
+    player_guess == solution
   end
 
   def winner(start_time, finish_time)
@@ -72,7 +84,7 @@ class Game
     end
   end
 
-  private
+  private  # => Game, Game
 
   def colors(guess, solution)
     guess_checker.total_correct_colors(guess, solution)

@@ -36,7 +36,7 @@ class Messages
     "Thank you for playing."
   end
 
-  def valid_response
+  def invalid_response
     "\nPlease enter a valid guess. A valid guess has 4 total characters consisting of any combination of the letters: (r)ed, (b)lue, (g)reen, and (y)ellow."
   end
 
