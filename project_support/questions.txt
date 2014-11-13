@@ -1,0 +1,9 @@
+1.  How to access methods outside of a class when the instance of the Class is
+    created w/out a variable.  Ex. Game.new
+answer - pass info into an argument
+
+2.  Style?  put in message file or in game file
+answer - keeps message isolated.  include puts or print when message called.
+
+3.  Time.  How to convert seconds to hours, minutes, seconds without having
+    to divide by 60s.

@@ -29,7 +29,7 @@ class Messages
   end
 
   def valid_response
-    "\nPlease enter a valid guess. A valid guess has 4 total characters consisting of the letters: (r)ed, (b)lue, (g)reen, and (y)ellow."
+    "\nPlease enter a valid guess. A valid guess has 4 total characters consisting of any combination of the letters: (r)ed, (b)lue, (g)reen, and (y)ellow."
   end
 
   def play_again
