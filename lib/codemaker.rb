@@ -22,7 +22,7 @@ end
 if __FILE__ == $0
   codemaker = CodeMaker.new
   puts codemaker.solution
-  codemaker.generate_solution
+  puts codemaker.generate_solution
   puts codemaker.new_random_solution
   puts codemaker.solution
 end
