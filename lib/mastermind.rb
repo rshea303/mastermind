@@ -7,7 +7,11 @@ puts message.intro
 
 response = ''
 
-while response != ('q' || 'quit')
+def quit?(response)
+  response == ('q' || 'quit')
+end
+
+while !quit?(response)
   puts message.play_instructions_quit
   print "> "
   response = gets.chomp.downcase
@@ -15,9 +19,8 @@ while response != ('q' || 'quit')
     Game.new.play_game
     exit
   elsif response == ("i" || "instructions")
-    instructions = Instructions.new
-    puts instructions.mastermind_instructions
-  elsif response == ("q" || "quit")
+    message.mastermind_instructions
+  elsif quit?(response)
     puts message.quit
     exit
   else
