@@ -22,11 +22,20 @@ class Game
       @counter += 1
       puts game_message.enter_guess_prompt
       print "> "
-      player_guess = gets.chomp
-        until GuessValidation.new(player_guess).valid_answer_check?
-          puts game_message.valid_response
-          print "> "
-          player_guess = gets.chomp
+      player_guess = gets.chomp.downcase
+        if player_guess == "q" || player_guess == "quit"
+          puts game_message.quit
+          exit
+        else
+          until GuessValidation.new(player_guess).valid_answer_check?
+            puts game_message.valid_response
+            print "> "
+            player_guess = gets.chomp.downcase
+            if player_guess == "q" || player_guess == "quit"
+              puts game_message.quit
+              exit
+            end
+          end
         end
       #puts "#{solution} Attempt: #{counter}  '#{player_guess.upcase}' has #{colors} of the correct elements with #{positions} in the correct position."
       puts "#{solution} Attempt: #{counter}  '#{player_guess.upcase}' has #{guess_checker.total_correct_colors(player_guess, code_maker.solution)} of the correct elements with #{guess_checker.location_match(player_guess, code_maker.solution)} in the correct positions."
