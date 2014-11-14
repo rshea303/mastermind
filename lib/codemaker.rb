@@ -2,7 +2,7 @@ class CodeMaker
   attr_reader :new_random_solution, :color_options
 
   def initialize
-    @color_options = ["r", "b", "g", "y"]
+    @color_options = %w(r b g y)
     @new_random_solution = []
   end
 
@@ -20,9 +20,7 @@ class CodeMaker
 end
 
 if __FILE__ == $0
-  codemaker = CodeMaker.new
-  puts codemaker.solution
-  puts codemaker.generate_solution
-  puts codemaker.new_random_solution
-  puts codemaker.solution
+  code_maker = CodeMaker.new
+  code_maker.generate_solution
+  print code_maker.solution
 end
